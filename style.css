@@ -38,6 +38,10 @@ body {
     width: 100%;
 }
 
+.carousel_track-container:hover > .carousel_btn{
+    display: block;
+}
+
 .carousel_btn {
     position: absolute;
     top: 50%;
@@ -45,14 +49,15 @@ body {
     background: transparent;
     border: 0;
     cursor: pointer;
+    display: none;
 }
 
 .carousel_btn--left {
-    left: -80px;
+    left: 0;
 }
 
 .carousel_btn--right {
-    right: -80px;
+    right: 0;
 }
 
 .carousel_btn img {
@@ -60,10 +65,10 @@ body {
 }
 
 .carousel_nav {
-    background: rgb(58, 58, 58);
+    background: rgb(224, 215, 215);
     display: flex;
     justify-content: center;
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px 0;
     width: 100%;
 }
@@ -78,9 +83,6 @@ body {
     cursor: pointer;
 }
 
-.carousel_indicator.carousel-slide {
-    background: rgba(197, 30, 30, 0.5);
+.carousel_indicator.current-slide {
+    background: rgba(0, 110, 255, 0.5);
 }
-
-/* .is-hidden {
-    display: none;} */
