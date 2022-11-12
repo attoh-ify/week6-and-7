@@ -24,15 +24,15 @@ const updateDots = (currentDot, targetDot) => {
     targetDot.classList.add('current-slide');
 }
 
-const hideShowArrows = (track, slides, targetIndex, currentSlide, targetSlide, currentDot, targetDot) => {
+const selectSlide = (track, slides, targetIndex, currentSlide, targetSlide, currentDot, targetDot, checker) => {
     console.log(targetDot)
-    if (targetIndex == 8) {
+    if (targetIndex === -1 && checker === "prev") {
         const currentSlide = slides[0];
         const targetSlide = slides[slides.length-1];
         const targetDot = dotsNav.querySelector('.last-slide');
         moveToSlide(track, currentSlide, targetSlide);
         updateDots(currentDot, targetDot);
-    } else if (targetIndex === -1) {
+    } else if (targetIndex === -1 && checker === "next") {
         const currentSlide = slides[slides.length-1];
         const targetSlide = slides[0];
         const targetDot = dotsNav.querySelector('.first-slide');
@@ -53,9 +53,7 @@ prevbtn.addEventListener('click', e => {
     const prevDot = currentDot.previousElementSibling;
     const prevIndex = slides.findIndex(slide => slide === prevSlide);
 
-    // moveToSlide(track, currentSlide, prevSlide);
-    hideShowArrows(track, slides, prevIndex, currentSlide, prevSlide, currentDot, prevDot);
-    // updateDots(currentDot, prevDot);
+    selectSlide(track, slides, prevIndex, currentSlide, prevSlide, currentDot, prevDot, "prev");
 })
 
 // when i click right move slide to the right
@@ -66,9 +64,7 @@ nextbtn.addEventListener('click', e => {
     const nextDot = currentDot.nextElementSibling;
     const nextIndex = slides.findIndex(slide => slide === nextSlide);
 
-    // moveToSlide(track, currentSlide, nextSlide);
-    hideShowArrows(track, slides, nextIndex, currentSlide, nextSlide, currentDot, nextDot);
-    // updateDots(currentDot, nextDot);
+    selectSlide(track, slides, nextIndex, currentSlide, nextSlide, currentDot, nextDot, "next");
 })
 
 
@@ -85,8 +81,5 @@ dotsNav.addEventListener('click', e => {
     const targetIndex = dots.findIndex(dot => dot === targetDot);
     const targetSlide = slides[targetIndex];
     
-    // moveToSlide(track, currentSlide, targetSlide);
-    hideShowArrows(track, slides, targetIndex, currentSlide, targetSlide, currentDot, targetDot);
-    // updateDots(currentDot, targetDot);
-    
+    selectSlide(track, slides, targetIndex, currentSlide, targetSlide, currentDot, targetDot, "random");
 })
